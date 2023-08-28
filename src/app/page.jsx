@@ -29,7 +29,7 @@ const Dashboard = () => {
             <CardInfo title={"Penjualan Hari Ini"} subtitle={23} />
             <CardInfo title={"Omset Hari Ini"} subtitle={"Rp. 200.000"} />
             <Button type={"submit"} color="bg-green">
-              Tambah Penjualan
+              Tambah Pemasukan
             </Button>
             <Button type={"submit"} color="bg-red">
               Tambah Pengeluaran
