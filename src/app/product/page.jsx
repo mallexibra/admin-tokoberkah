@@ -18,7 +18,7 @@ const Product = () => {
         </div>
         <div class="relative overflow-x-auto my-3 shadow-md rounded-lg">
           <table class="w-full text-sm text-center text-second">
-            <thead class="text-xs uppercase bg-black">
+            <thead class="text-xs uppercase bg-primary">
               <tr>
                 <th scope="col" class="px-6 py-3">
                   Nama Produk
@@ -69,7 +69,7 @@ const Product = () => {
         </div>
         <div class="relative overflow-x-auto my-3 shadow-md rounded-lg">
           <table class="w-full text-sm text-center text-second">
-            <thead class="text-xs uppercase bg-black">
+            <thead class="text-xs uppercase bg-primary">
               <tr>
                 <th scope="col" class="px-6 py-3">
                   Nama Kategori
