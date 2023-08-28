@@ -1,4 +1,4 @@
-const LabelForm = ({ name, type, placeholder }) => {
+const LabelForm = ({ name, type, placeholder, value }) => {
   return (
     <label
       aria-label="LabelForm"
@@ -10,6 +10,7 @@ const LabelForm = ({ name, type, placeholder }) => {
         className="w-full border border-black rounded-md p-2 text-xs outline-none"
         type={type}
         name={name}
+        value={value}
         placeholder={placeholder}
         id={name}
       />

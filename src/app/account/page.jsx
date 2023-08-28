@@ -1,6 +1,7 @@
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import Image from "next/image";
+import TambahTeam from "./TambahTeam";
 
 const Account = () => {
   return (
@@ -59,12 +60,7 @@ const Account = () => {
               </div>
             </li>
           </ul>
-          <button className="flex items-center gap-3 mt-7" type="submit">
-            <span className="w-8 h-8 font-bold text-second grid place-items-center bg-slate-800 rounded-full">
-              <Image width={23} height={23} src="/plus.svg" alt="plus-icon" />
-            </span>
-            <p>Tambahkan team baru</p>
-          </button>
+          <TambahTeam />
         </div>
       </Container>
     </div>

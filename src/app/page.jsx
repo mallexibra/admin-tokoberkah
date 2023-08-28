@@ -5,6 +5,8 @@ import Container from "@/components/Container";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
+import TambahPemasukan from "./TambahPemasukan";
+import TambahPengeluaran from "./TambahPengeluaran";
 
 const Dashboard = () => {
   return (
@@ -38,12 +40,8 @@ const Dashboard = () => {
           <div className="grid grid-cols-2 mt-2 gap-2 justify-between">
             <CardInfo title={"Penjualan Hari Ini"} subtitle={23} />
             <CardInfo title={"Omset Hari Ini"} subtitle={"Rp. 200.000"} />
-            <Button type={"submit"} color="bg-green">
-              Tambah Pemasukan
-            </Button>
-            <Button type={"submit"} color="bg-red">
-              Tambah Pengeluaran
-            </Button>
+            <TambahPemasukan />
+            <TambahPengeluaran />
           </div>
           <CardHistory title={"Riwayat Pemasukan"} />
           <CardHistory title={"Riwayat Pengeluaran"} />

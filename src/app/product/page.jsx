@@ -2,6 +2,11 @@ import Button from "@/components/Button";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import Image from "next/image";
+import TambahProduk from "./TambahProduk";
+import TambahKategori from "./TambahKategori";
+import LihatProduk from "./LihatProduk";
+import EditProduk from "./EditProduk";
+import EditKategori from "./EditKategori";
 
 const Product = () => {
   return (
@@ -9,7 +14,7 @@ const Product = () => {
       <Container>
         <Header name={"Malik"} page={"Halaman Produk"} />
         <div className="w-1/3">
-          <Button type={"submit"}>Tambah Produk</Button>
+          <TambahProduk />
         </div>
         <div class="relative overflow-x-auto my-3 shadow-md rounded-lg">
           <table class="w-full text-sm text-center text-second">
@@ -46,18 +51,8 @@ const Product = () => {
                   Rp. 210.000
                 </td>
                 <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <Image
-                    width={25}
-                    height={25}
-                    src="/view.svg"
-                    alt="view-icon"
-                  />
-                  <Image
-                    width={23}
-                    height={23}
-                    src="/edit.svg"
-                    alt="edit-icon"
-                  />
+                  <LihatProduk />
+                  <EditProduk />
                   <Image
                     width={23}
                     height={23}
@@ -70,7 +65,7 @@ const Product = () => {
           </table>
         </div>
         <div className="w-max">
-          <Button type={"submit"}>Tambah Kategori Produk</Button>
+          <TambahKategori />
         </div>
         <div class="relative overflow-x-auto my-3 shadow-md rounded-lg">
           <table class="w-full text-sm text-center text-second">
@@ -97,18 +92,7 @@ const Product = () => {
                 </th>
                 <td class="px-6 py-4 border-r border-primary/25">17</td>
                 <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <Image
-                    width={25}
-                    height={25}
-                    src="/view.svg"
-                    alt="view-icon"
-                  />
-                  <Image
-                    width={23}
-                    height={23}
-                    src="/edit.svg"
-                    alt="edit-icon"
-                  />
+                  <EditKategori />
                   <Image
                     width={23}
                     height={23}
