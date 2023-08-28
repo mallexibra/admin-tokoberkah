@@ -17,7 +17,12 @@ const Account = () => {
                   <p className="text-xs opacity-50">@mallexibra</p>
                 </div>
                 <button className="row-span-2 w-max">
-                  <Image src="/trash.svg" alt="trash-icon" />
+                  <Image
+                    width={23}
+                    height={23}
+                    src="/trash.svg"
+                    alt="trash-icon"
+                  />
                 </button>
               </div>
             </li>
@@ -28,7 +33,12 @@ const Account = () => {
                   <p className="text-xs opacity-50">@mallexibra</p>
                 </div>
                 <button className="row-span-2 w-max">
-                  <Image src="/trash.svg" alt="trash-icon" />
+                  <Image
+                    width={23}
+                    height={23}
+                    src="/trash.svg"
+                    alt="trash-icon"
+                  />
                 </button>
               </div>
             </li>
@@ -39,14 +49,19 @@ const Account = () => {
                   <p className="text-xs opacity-50">@mallexibra</p>
                 </div>
                 <button className="row-span-2 w-max">
-                  <Image src="/trash.svg" alt="trash-icon" />
+                  <Image
+                    width={23}
+                    height={23}
+                    src="/trash.svg"
+                    alt="trash-icon"
+                  />
                 </button>
               </div>
             </li>
           </ul>
           <button className="flex items-center gap-3 mt-7" type="submit">
             <span className="w-8 h-8 font-bold text-second grid place-items-center bg-slate-800 rounded-full">
-              <Image src="/plus.svg" alt="plus-icon" />
+              <Image width={23} height={23} src="/plus.svg" alt="plus-icon" />
             </span>
             <p>Tambahkan team baru</p>
           </button>

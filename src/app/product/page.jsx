@@ -46,9 +46,24 @@ const Product = () => {
                   Rp. 210.000
                 </td>
                 <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <Image width={25} src="/view.svg" alt="view-icon" />
-                  <Image src="/edit.svg" alt="edit-icon" />
-                  <Image src="/trash.svg" alt="trash-icon" />
+                  <Image
+                    width={25}
+                    height={25}
+                    src="/view.svg"
+                    alt="view-icon"
+                  />
+                  <Image
+                    width={23}
+                    height={23}
+                    src="/edit.svg"
+                    alt="edit-icon"
+                  />
+                  <Image
+                    width={23}
+                    height={23}
+                    src="/trash.svg"
+                    alt="trash-icon"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -82,9 +97,24 @@ const Product = () => {
                 </th>
                 <td class="px-6 py-4 border-r border-primary/25">17</td>
                 <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <Image width={25} src="/view.svg" alt="view-icon" />
-                  <Image src="/edit.svg" alt="edit-icon" />
-                  <Image src="/trash.svg" alt="trash-icon" />
+                  <Image
+                    width={25}
+                    height={25}
+                    src="/view.svg"
+                    alt="view-icon"
+                  />
+                  <Image
+                    width={23}
+                    height={23}
+                    src="/edit.svg"
+                    alt="edit-icon"
+                  />
+                  <Image
+                    width={23}
+                    height={23}
+                    src="/trash.svg"
+                    alt="trash-icon"
+                  />
                 </td>
               </tr>
             </tbody>

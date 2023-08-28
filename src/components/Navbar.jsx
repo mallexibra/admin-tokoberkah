@@ -16,7 +16,7 @@ const Navbar = ({ home, product, person, logout }) => {
             className={`p-4 rounded-lg block ${home && "bg-second/5"}`}
             href="/"
           >
-            <Image width={25} src="/home.svg" alt="home-icon" />
+            <Image width={25} height={25} src="/home.svg" alt="home-icon" />
           </Link>
         </li>
         <li>
@@ -24,7 +24,12 @@ const Navbar = ({ home, product, person, logout }) => {
             className={`p-4 rounded-lg block ${product && "bg-second/5"}`}
             href="/product"
           >
-            <Image width={28} src="/product.svg" alt="product-icon" />
+            <Image
+              width={28}
+              height={28}
+              src="/product.svg"
+              alt="product-icon"
+            />
           </Link>
         </li>
         <li>
@@ -32,7 +37,7 @@ const Navbar = ({ home, product, person, logout }) => {
             className={`p-4 rounded-lg block ${person && "bg-second/5"}`}
             href="/account"
           >
-            <Image width={28} src="/person.svg" alt="person-icon" />
+            <Image width={28} height={28} src="/person.svg" alt="person-icon" />
           </Link>
         </li>
         <li>
@@ -40,7 +45,7 @@ const Navbar = ({ home, product, person, logout }) => {
             onClick={logOut}
             className={`p-4 rounded-lg block ${logout && "bg-second/5"}`}
           >
-            <Image width={28} src="/logout.svg" alt="logout-icon" />
+            <Image width={28} height={28} src="/logout.svg" alt="logout-icon" />
           </button>
         </li>
       </ul>
