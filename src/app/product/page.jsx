@@ -38,7 +38,7 @@ const Product = () => {
                   scope="row"
                   class="px-6 py-4 border-r border-primary/25 font-medium whitespace-nowrap"
                 >
-                  Apple MacBook Pro 17"
+                  Apple MacBook Pro 17
                 </th>
                 <td class="px-6 py-4 border-r border-primary/25">Laptop</td>
                 <td class="px-6 py-4 border-r border-primary/25">17</td>
@@ -78,7 +78,7 @@ const Product = () => {
                   scope="row"
                   class="px-6 py-4 border-r border-primary/25 font-medium whitespace-nowrap"
                 >
-                  Apple MacBook Pro 17"
+                  Apple MacBook Pro 17
                 </th>
                 <td class="px-6 py-4 border-r border-primary/25">17</td>
                 <td class="px-6 py-4 w-max flex items-center gap-2">
