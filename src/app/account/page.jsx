@@ -17,7 +17,7 @@ const Account = () => {
                   <p className="text-xs opacity-50">@mallexibra</p>
                 </div>
                 <button className="row-span-2 w-max">
-                  <img src="/trash.svg" alt="trash-icon" />
+                  <Image src="/trash.svg" alt="trash-icon" />
                 </button>
               </div>
             </li>
