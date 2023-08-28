@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
+import Image from "next/image";
 
 const Product = () => {
   return (
@@ -45,9 +46,9 @@ const Product = () => {
                   Rp. 210.000
                 </td>
                 <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <img width={25} src="/view.svg" alt="view-icon" />
-                  <img src="/edit.svg" alt="edit-icon" />
-                  <img src="/trash.svg" alt="trash-icon" />
+                  <Image width={25} src="/view.svg" alt="view-icon" />
+                  <Image src="/edit.svg" alt="edit-icon" />
+                  <Image src="/trash.svg" alt="trash-icon" />
                 </td>
               </tr>
             </tbody>
@@ -81,9 +82,9 @@ const Product = () => {
                 </th>
                 <td class="px-6 py-4 border-r border-primary/25">17</td>
                 <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <img width={25} src="/view.svg" alt="view-icon" />
-                  <img src="/edit.svg" alt="edit-icon" />
-                  <img src="/trash.svg" alt="trash-icon" />
+                  <Image width={25} src="/view.svg" alt="view-icon" />
+                  <Image src="/edit.svg" alt="edit-icon" />
+                  <Image src="/trash.svg" alt="trash-icon" />
                 </td>
               </tr>
             </tbody>

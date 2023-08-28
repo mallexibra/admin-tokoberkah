@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -15,7 +16,7 @@ const Navbar = ({ home, product, person, logout }) => {
             className={`p-4 rounded-lg block ${home && "bg-second/5"}`}
             href="/"
           >
-            <img width={25} src="/home.svg" alt="home-icon" />
+            <Image width={25} src="/home.svg" alt="home-icon" />
           </Link>
         </li>
         <li>
@@ -23,7 +24,7 @@ const Navbar = ({ home, product, person, logout }) => {
             className={`p-4 rounded-lg block ${product && "bg-second/5"}`}
             href="/product"
           >
-            <img width={28} src="/product.svg" alt="product-icon" />
+            <Image width={28} src="/product.svg" alt="product-icon" />
           </Link>
         </li>
         <li>
@@ -31,7 +32,7 @@ const Navbar = ({ home, product, person, logout }) => {
             className={`p-4 rounded-lg block ${person && "bg-second/5"}`}
             href="/account"
           >
-            <img width={28} src="/person.svg" alt="person-icon" />
+            <Image width={28} src="/person.svg" alt="person-icon" />
           </Link>
         </li>
         <li>
@@ -39,7 +40,7 @@ const Navbar = ({ home, product, person, logout }) => {
             onClick={logOut}
             className={`p-4 rounded-lg block ${logout && "bg-second/5"}`}
           >
-            <img width={28} src="/logout.svg" alt="logout-icon" />
+            <Image width={28} src="/logout.svg" alt="logout-icon" />
           </button>
         </li>
       </ul>

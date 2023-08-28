@@ -4,6 +4,7 @@ import CardInfo from "@/components/CardInfo";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
 
 const Dashboard = () => {
   return (
@@ -16,11 +17,12 @@ const Dashboard = () => {
             <h3 className="font-bold text-lg col-span-2">Total Saldo Anda</h3>
             <p className="font-bold text-2xl my-3 col-span-2">Rp. 1.000.000</p>
             <p className="text-xs flex items-center gap-2">
-              <img width={18} src="/arrowdown.svg" alt="Arrow-icon" /> Rp.
+              <Image width={18} src="/arrowdown.svg" alt="Arrow-icon" /> Rp.
               200.000
             </p>
             <p className="text-xs flex items-center gap-2">
-              <img width={18} src="/arrowup.svg" alt="Arrow-icon" /> Rp. 200.000
+              <Image width={18} src="/arrowup.svg" alt="Arrow-icon" /> Rp.
+              200.000
             </p>
           </div>
           <div className="grid grid-cols-2 mt-2 gap-2 justify-between">
