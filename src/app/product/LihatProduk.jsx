@@ -36,7 +36,7 @@ const LihatProduk = () => {
       />
 
       <div
-        className="z-20 fixed grid place-items-center top-0 right-0 bottom-0 left-0 bg-primary/50"
+        className="z-20 opacity-0 fixed grid place-items-center top-0 right-0 bottom-0 left-0 bg-primary/50"
         onClick={handleModal}
         ref={animation}
       >

@@ -37,7 +37,7 @@ const EditProduk = () => {
         className="cursor-pointer"
       />
       <div
-        className="fixed z-20 grid place-items-center top-0 right-0 bottom-0 left-0 bg-primary/50"
+        className="fixed opacity-0 z-20 grid place-items-center top-0 right-0 bottom-0 left-0 bg-primary/50"
         onClick={handleModal}
         ref={animation}
       >
