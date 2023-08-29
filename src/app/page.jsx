@@ -1,4 +1,3 @@
-import Button from "@/components/Button";
 import CardHistory from "@/components/CardHistory";
 import CardInfo from "@/components/CardInfo";
 import Container from "@/components/Container";
