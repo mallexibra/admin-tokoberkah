@@ -24,3 +24,12 @@ model Kategori {
   nama    String
   product Product[]
 }
+
+model Users {
+  id       Int    @id @default(autoincrement())
+  nama     String
+  username String
+  password String
+  image    String
+  imageUrl String
+}

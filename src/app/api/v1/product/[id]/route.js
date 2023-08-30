@@ -6,14 +6,21 @@ const prisma = new PrismaClient();
 export const GET = async (req, params) => {
   const id = Number(params.params.id);
 
-  const data = await prisma.kategori.findUnique({
+  const data = await prisma.product.findUnique({
     where: {
       id,
+    },
+    select: {
+      id: true,
+      nama: true,
+      stok: true,
+      harga: true,
+      kategori: true,
     },
   });
 
   return NextResponse.json(
-    { message: "Get category by Id", data },
+    { message: "Get product by Id", data },
     { status: 200 }
   );
 };
@@ -22,7 +29,7 @@ export const PATCH = async (req, params) => {
   const id = Number(params.params.id);
   const data = await req.json();
 
-  await prisma.kategori.update({
+  await prisma.product.update({
     where: {
       id,
     },
@@ -30,7 +37,7 @@ export const PATCH = async (req, params) => {
   });
 
   return NextResponse.json(
-    { message: `Update category on id ${id}` },
+    { message: `Update product where id ${id}` },
     { status: 200 }
   );
 };
@@ -38,12 +45,12 @@ export const PATCH = async (req, params) => {
 export const DELETE = async (req, params) => {
   const id = Number(params.params.id);
 
-  await prisma.kategori.delete({
+  await prisma.product.delete({
     where: { id },
   });
 
   return NextResponse.json(
-    { message: "Delete category by Id" },
+    { message: "Delete product by Id" },
     { status: 200 }
   );
 };
