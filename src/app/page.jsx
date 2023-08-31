@@ -1,3 +1,4 @@
+"use client";
 import CardHistory from "@/components/CardHistory";
 import CardInfo from "@/components/CardInfo";
 import Container from "@/components/Container";
@@ -6,8 +7,23 @@ import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import TambahPemasukan from "./TambahPemasukan";
 import TambahPengeluaran from "./TambahPengeluaran";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const router = useRouter();
+
+  const checkLogin = () => {
+    const isLogin = localStorage.getItem("user");
+    if (!isLogin) {
+      alert("Silahkan login terlebih dahulu!");
+      router.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    checkLogin();
+  }, []);
   return (
     <div>
       <Navbar home={true} />
