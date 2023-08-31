@@ -4,18 +4,24 @@ import Container from "@/components/Container";
 import LabelForm from "@/components/LabelForm";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const router = useRouter();
+  const [user, setUser] = useState([]);
+
+  const getUsers = async () => {
+    const data = await (await axios.get("/api/v1/users")).data;
+    setUser(data);
+  };
 
   const logIn = async (e) => {
     e.preventDefault();
-    const data = (await axios.get("/api/v1/users")).data;
     const username = e.target[0].value;
     const password = e.target[1].value;
 
-    data.data.length > 0
-      ? data.data.map((item) => {
+    user.data.length > 0
+      ? user.data.map((item) => {
           if (item.username == username) {
             if (item.password == password) {
               localStorage.setItem("user", "active");
@@ -28,6 +34,15 @@ const Login = () => {
         })
       : alert("Data tidak tersedia");
   };
+
+  useEffect(() => {
+    getUsers();
+    const isLogin = localStorage.getItem("user");
+    if (isLogin) {
+      alert("Anda sudah login!");
+      router.push("/");
+    }
+  }, []);
   return (
     <div className="p-3 grid place-items-center h-screen">
       <Container>
