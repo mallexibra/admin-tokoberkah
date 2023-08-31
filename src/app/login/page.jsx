@@ -25,6 +25,7 @@ const Login = () => {
           if (item.username == username) {
             if (item.password == password) {
               localStorage.setItem("user", "active");
+              localStorage.setItem("employee", true);
               alert("Login anda berhasil!");
               return router.push("/");
             }
