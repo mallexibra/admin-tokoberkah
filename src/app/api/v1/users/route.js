@@ -8,7 +8,7 @@ export const GET = async (req, params) => {
     const data = await prisma.users.findMany();
     return NextResponse.json(
       {
-        message: "Get all product",
+        message: "Get all users",
         data,
       },
       { status: 200 }

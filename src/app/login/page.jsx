@@ -2,18 +2,36 @@
 import Button from "@/components/Button";
 import Container from "@/components/Container";
 import LabelForm from "@/components/LabelForm";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
 
-  const logIn = () => {
-    return router.push("/");
+  const logIn = async (e) => {
+    e.preventDefault();
+    const data = (await axios.get("/api/v1/users")).data;
+    const username = e.target[0].value;
+    const password = e.target[1].value;
+
+    data.data.length > 0
+      ? data.data.map((item) => {
+          if (item.username == username) {
+            if (item.password == password) {
+              localStorage.setItem("user", "active");
+              alert("Login anda berhasil!");
+              return router.push("/");
+            }
+          }
+          alert("Username/Password anda salah!");
+          return router.push("/login");
+        })
+      : alert("Data tidak tersedia");
   };
   return (
-    <Container>
-      <div className="p-3 grid place-items-center min-h-screen">
-        <form className="w-full" action="" method="post">
+    <div className="p-3 grid place-items-center h-screen">
+      <Container>
+        <form className="w-full" action="" onSubmit={logIn} method="post">
           <h1 className="text-xl font-bold">Selamat Datang!</h1>
           <p>Silahkan masuk dengan akun anda...</p>
           <div className="mt-4 space-y-2">
@@ -27,13 +45,11 @@ const Login = () => {
               type={"password"}
               placeholder={"Silahkan masukkan password anda..."}
             />
-            <Button onClick={logIn} type={"submit"}>
-              Masuk
-            </Button>
+            <Button type={"submit"}>Masuk</Button>
           </div>
         </form>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 
