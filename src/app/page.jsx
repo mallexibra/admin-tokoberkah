@@ -7,8 +7,8 @@ import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import TambahPemasukan from "./TambahPemasukan";
 import TambahPengeluaran from "./TambahPengeluaran";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const router = useRouter();

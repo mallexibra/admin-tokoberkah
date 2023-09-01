@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+"use client";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import Image from "next/image";
@@ -7,8 +7,23 @@ import TambahKategori from "./TambahKategori";
 import LihatProduk from "./LihatProduk";
 import EditProduk from "./EditProduk";
 import EditKategori from "./EditKategori";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Product = () => {
+  const router = useRouter();
+
+  const checkLogin = () => {
+    const isLogin = localStorage.getItem("user");
+    if (!isLogin) {
+      alert("Silahkan login terlebih dahulu!");
+      router.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    checkLogin();
+  }, []);
   return (
     <main>
       <Container>

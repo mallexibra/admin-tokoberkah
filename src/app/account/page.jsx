@@ -5,9 +5,19 @@ import Image from "next/image";
 import TambahTeam from "./TambahTeam";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Account = () => {
   const [users, setUsers] = useState([]);
+  const router = useRouter();
+
+  const checkLogin = () => {
+    const isLogin = localStorage.getItem("user");
+    if (!isLogin) {
+      alert("Silahkan login terlebih dahulu!");
+      router.push("/login");
+    }
+  };
 
   const getUsers = async () => {
     const data = (await axios.get("/api/v1/users")).data.data;
@@ -23,6 +33,7 @@ const Account = () => {
   };
 
   useEffect(() => {
+    checkLogin();
     getUsers();
   }, []);
 
