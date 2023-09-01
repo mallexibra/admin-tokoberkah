@@ -22,7 +22,7 @@ export const GET = async () => {
 
 export const POST = async (req) => {
   try {
-    const data = req.json();
+    const data = await req.json();
     await prisma.product.create({ data });
     return NextResponse.json(
       { message: "Add product success!" },

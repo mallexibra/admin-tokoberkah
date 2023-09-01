@@ -64,7 +64,7 @@ const Product = () => {
       <Container>
         <Header name={"Malik"} page={"Halaman Produk"} />
         <div className="w-1/3">
-          <TambahProduk />
+          <TambahProduk method={getProduct} category={category} />
         </div>
         <div class="relative overflow-x-auto my-3 shadow-md rounded-lg">
           <table class="w-full text-sm text-center text-second">
@@ -107,7 +107,11 @@ const Product = () => {
                   </td>
                   <td class="px-6 py-4 w-max flex items-center gap-2">
                     <LihatProduk product={item} />
-                    <EditProduk method={getProduct} product={item} />
+                    <EditProduk
+                      method={getProduct}
+                      category={category}
+                      product={item}
+                    />
                     <Image
                       onClick={() => deleteProduct(item.id)}
                       className="cursor-pointer"

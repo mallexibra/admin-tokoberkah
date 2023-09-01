@@ -6,12 +6,13 @@ import { useEffect, useRef, useState } from "react";
 import { useAnimate } from "framer-motion";
 import axios from "axios";
 
-const EditProduk = ({ product, method }) => {
+const EditProduk = ({ product, method, category }) => {
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useAnimate();
   const [nama, setNama] = useState(product.nama);
   const [stok, setStok] = useState(product.stok);
   const [harga, setHarga] = useState(product.harga);
+  const [kategori, setKategori] = useState(product.kategori.id);
   const formRef = useRef(null);
 
   const handleModal = (e) => {
@@ -21,7 +22,7 @@ const EditProduk = ({ product, method }) => {
   };
 
   const handleEdit = async () => {
-    const data = { nama, stok, harga };
+    const data = { nama, stok, harga, kategori: { connect: { id: kategori } } };
     console.log(data);
     await axios.patch(`/api/v1/product/${product.id}`, data, {
       headers: "application/json",
@@ -34,10 +35,8 @@ const EditProduk = ({ product, method }) => {
   useEffect(() => {
     if (modal) {
       setAnimation(animation.current, { scale: 1, opacity: 1 });
-      console.log(animation.current);
     } else {
       setAnimation(animation.current, { opacity: 0, scale: 0 });
-      console.log(animation.current);
     }
   }, [modal]);
 
@@ -85,6 +84,27 @@ const EditProduk = ({ product, method }) => {
             value={harga}
             placeholder={"Harga produk anda..."}
           />
+          <label
+            aria-label="LabelForm"
+            className="flex flex-col gap-1"
+            htmlFor={"category"}
+          >
+            <span className="font-medium">{"category"}</span>
+            <select
+              name="category"
+              id="category"
+              value={kategori}
+              onChange={(e) => setKategori(Number(e.target.value))}
+              className="w-full border border-black rounded-md p-2 text-xs outline-none"
+            >
+              <option>Silahkan Pilih Kategori</option>
+              {category.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.nama}
+                </option>
+              ))}
+            </select>
+          </label>
           <Button type={"submit"}>Edit Produk</Button>
         </form>
       </div>
