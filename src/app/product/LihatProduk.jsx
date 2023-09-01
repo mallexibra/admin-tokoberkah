@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useAnimate } from "framer-motion";
 
-const LihatProduk = () => {
+const LihatProduk = ({ product }) => {
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useAnimate();
   const formRef = useRef(null);
@@ -43,7 +43,7 @@ const LihatProduk = () => {
         <div ref={formRef} className="bg-second w-3/4 text-left rounded-md p-4">
           <h3 className="text-lg font-bold">Detail Produk</h3>
           <h5 className="font-semibold">Nama Produk</h5>
-          <p>Lorem ipsum dolor sit amet.</p>
+          <p>{product.nama}</p>
           <h5 className="font-semibold">Deskripsi Produk</h5>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
@@ -51,11 +51,11 @@ const LihatProduk = () => {
             quaerat.
           </p>
           <h5 className="font-semibold">Kategori Produk</h5>
-          <p>Laptop</p>
+          <p>{product.kategori.nama}</p>
           <h5 className="font-semibold">Stok Produk</h5>
-          <p>12</p>
+          <p>{product.stok}</p>
           <h5 className="font-semibold">Harga Produk</h5>
-          <p>Rp. 120.000</p>
+          <p>Rp. {product.harga}</p>
         </div>
       </div>
     </div>

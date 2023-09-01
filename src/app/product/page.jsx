@@ -7,11 +7,14 @@ import TambahKategori from "./TambahKategori";
 import LihatProduk from "./LihatProduk";
 import EditProduk from "./EditProduk";
 import EditKategori from "./EditKategori";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const Product = () => {
   const router = useRouter();
+  const [product, setProduct] = useState([]);
+  const [category, setCategory] = useState([]);
 
   const checkLogin = () => {
     const isLogin = localStorage.getItem("user");
@@ -21,8 +24,40 @@ const Product = () => {
     }
   };
 
+  const getProduct = async () => {
+    const data = (await axios.get("/api/v1/product")).data.data;
+    setProduct(data);
+  };
+
+  const getCategory = async () => {
+    const data = (await axios.get("/api/v1/category")).data.data;
+    setCategory(data);
+  };
+
+  const deleteProduct = async (id) => {
+    const konfirmasi = confirm(
+      "Apakah anda yakin akan menghapus produk berikut?"
+    );
+    if (konfirmasi) {
+      await axios.delete(`/api/v1/product/${id}`);
+    }
+    getProduct();
+  };
+
+  const deleteCategory = async (id) => {
+    const konfirmasi = confirm(
+      "Apakah anda yakin akan menghapus kategori berikut?"
+    );
+    if (konfirmasi) {
+      await axios.delete(`/api/v1/category/${id}`);
+    }
+    getCategory();
+  };
+
   useEffect(() => {
     checkLogin();
+    getProduct();
+    getCategory();
   }, []);
   return (
     <main>
@@ -53,29 +88,37 @@ const Product = () => {
               </tr>
             </thead>
             <tbody className="text-primary">
-              <tr class="border-b border-gray-700">
-                <th
-                  scope="row"
-                  class="px-6 py-4 border-r border-primary/25 font-medium whitespace-nowrap"
-                >
-                  Apple MacBook Pro 17
-                </th>
-                <td class="px-6 py-4 border-r border-primary/25">Laptop</td>
-                <td class="px-6 py-4 border-r border-primary/25">17</td>
-                <td class="px-6 py-4 border-r border-primary/25 whitespace-nowrap">
-                  Rp. 210.000
-                </td>
-                <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <LihatProduk />
-                  <EditProduk />
-                  <Image
-                    width={23}
-                    height={23}
-                    src="/trash.svg"
-                    alt="trash-icon"
-                  />
-                </td>
-              </tr>
+              {product.map((item) => (
+                <tr key={item.id} class="border-b border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 border-r border-primary/25 font-medium whitespace-nowrap"
+                  >
+                    {item.nama}
+                  </th>
+                  <td class="px-6 py-4 border-r border-primary/25">
+                    {item.kategori.nama}
+                  </td>
+                  <td class="px-6 py-4 border-r border-primary/25">
+                    {item.stok}
+                  </td>
+                  <td class="px-6 py-4 border-r border-primary/25 whitespace-nowrap">
+                    Rp. {item.harga}
+                  </td>
+                  <td class="px-6 py-4 w-max flex items-center gap-2">
+                    <LihatProduk product={item} />
+                    <EditProduk />
+                    <Image
+                      onClick={() => deleteProduct(item.id)}
+                      className="cursor-pointer"
+                      width={23}
+                      height={23}
+                      src="/trash.svg"
+                      alt="trash-icon"
+                    />
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -98,24 +141,30 @@ const Product = () => {
               </tr>
             </thead>
             <tbody className="text-primary">
-              <tr class="border-b border-gray-700">
-                <th
-                  scope="row"
-                  class="px-6 py-4 border-r border-primary/25 font-medium whitespace-nowrap"
-                >
-                  Apple MacBook Pro 17
-                </th>
-                <td class="px-6 py-4 border-r border-primary/25">17</td>
-                <td class="px-6 py-4 w-max flex items-center gap-2">
-                  <EditKategori />
-                  <Image
-                    width={23}
-                    height={23}
-                    src="/trash.svg"
-                    alt="trash-icon"
-                  />
-                </td>
-              </tr>
+              {category.map((item) => (
+                <tr class="border-b border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 border-r border-primary/25 font-medium whitespace-nowrap"
+                  >
+                    {item.nama}
+                  </th>
+                  <td class="px-6 py-4 border-r border-primary/25">
+                    {item.product.length}
+                  </td>
+                  <td class="px-6 py-4 w-max flex items-center gap-2">
+                    <EditKategori />
+                    <Image
+                      onClick={() => deleteCategory(item.id)}
+                      className="cursor-pointer"
+                      width={23}
+                      height={23}
+                      src="/trash.svg"
+                      alt="trash-icon"
+                    />
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
