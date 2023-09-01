@@ -123,7 +123,7 @@ const Product = () => {
           </table>
         </div>
         <div className="w-max">
-          <TambahKategori />
+          <TambahKategori method={getCategory} />
         </div>
         <div class="relative overflow-x-auto my-3 shadow-md rounded-lg">
           <table class="w-full text-sm text-center text-second">

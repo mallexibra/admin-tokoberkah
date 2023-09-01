@@ -3,8 +3,9 @@ import Button from "@/components/Button";
 import LabelForm from "@/components/LabelForm";
 import { useEffect, useRef, useState } from "react";
 import { useAnimate } from "framer-motion";
+import axios from "axios";
 
-const TambahKategori = () => {
+const TambahKategori = ({ method }) => {
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useAnimate();
   const formRef = useRef(null);
@@ -13,6 +14,18 @@ const TambahKategori = () => {
     if (!formRef.current.contains(e.target)) {
       setModal(!modal);
     }
+  };
+
+  const handleAddItem = async (e) => {
+    const nama = e.target[0].value;
+    await axios.post(
+      "/api/v1/category",
+      { nama },
+      { headers: "application/json" }
+    );
+    method();
+    setModal(false);
+    alert("Data category berhasil ditambahkan!");
   };
 
   useEffect(() => {
@@ -36,6 +49,7 @@ const TambahKategori = () => {
       >
         <form
           ref={formRef}
+          onSubmit={handleAddItem}
           className="bg-second relative space-y-3 p-5 rounded-md"
           action=""
           method="post"
