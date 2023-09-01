@@ -1,4 +1,4 @@
-const LabelForm = ({ name, type, placeholder, value }) => {
+const LabelForm = ({ name, type, change, placeholder, value }) => {
   return (
     <label
       aria-label="LabelForm"
@@ -11,6 +11,7 @@ const LabelForm = ({ name, type, placeholder, value }) => {
         type={type}
         name={name}
         value={value}
+        onChange={change}
         placeholder={placeholder}
         id={name}
       />

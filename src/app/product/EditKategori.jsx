@@ -4,16 +4,31 @@ import LabelForm from "@/components/LabelForm";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useAnimate } from "framer-motion";
+import axios from "axios";
 
-const EditKategori = () => {
+const EditKategori = ({ category, method }) => {
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useAnimate();
+  const [nama, setNama] = useState(category.nama);
   const formRef = useRef(null);
 
   const handleModal = (e) => {
     if (!formRef.current.contains(e.target)) {
       setModal(!modal);
     }
+  };
+
+  const handleEdit = async () => {
+    await axios.patch(
+      `/api/v1/category/${category.id}`,
+      { nama },
+      {
+        headers: "application/json",
+      }
+    );
+    method();
+    setModal(false);
+    alert("Data kategori berhasil di ubah!");
   };
 
   useEffect(() => {
@@ -43,6 +58,7 @@ const EditKategori = () => {
       >
         <form
           ref={formRef}
+          onSubmit={handleEdit}
           className="bg-second text-left relative space-y-3 p-5 rounded-md"
           action=""
           method="post"
@@ -51,7 +67,8 @@ const EditKategori = () => {
           <LabelForm
             name={"Nama kategori"}
             type={"text"}
-            value={"Mackbook air"}
+            value={nama}
+            change={(e) => setNama(e.target.value)}
             placeholder={"Nama kategori anda..."}
           />
           <Button type={"submit"}>Edit Kategori</Button>

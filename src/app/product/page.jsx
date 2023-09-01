@@ -153,7 +153,7 @@ const Product = () => {
                     {item.product.length}
                   </td>
                   <td class="px-6 py-4 w-max flex items-center gap-2">
-                    <EditKategori />
+                    <EditKategori method={getCategory} category={item} />
                     <Image
                       onClick={() => deleteCategory(item.id)}
                       className="cursor-pointer"
