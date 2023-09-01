@@ -1,9 +1,31 @@
+"use client";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import Image from "next/image";
 import TambahTeam from "./TambahTeam";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Account = () => {
+  const [users, setUsers] = useState([]);
+
+  const getUsers = async () => {
+    const data = (await axios.get("/api/v1/users")).data.data;
+    setUsers(data);
+  };
+
+  const deleteUser = async (username, id) => {
+    const isConfirm = confirm(`Apakah anda yakin akan menghapus @${username}?`);
+    if (isConfirm) {
+      await axios.delete(`/api/v1/users/${id}`);
+      getUsers();
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <div>
       <Container>
@@ -11,56 +33,29 @@ const Account = () => {
         <div className="bg-second p-5 shadow-lg rounded-lg">
           <h5 className="text-lg font-bold">Team anda</h5>
           <ul className="list-disc space-y-2 ml-5">
-            <li>
-              <div className="flex justify-between font-semibold">
-                <div>
-                  <p>Maulana Malik Ibrahim</p>
-                  <p className="text-xs opacity-50">@mallexibra</p>
+            {users.map((item) => (
+              <li key={item.id}>
+                <div className="flex justify-between font-semibold">
+                  <div>
+                    <p>{item.nama}</p>
+                    <p className="text-xs opacity-50">@{item.username}</p>
+                  </div>
+                  <button
+                    onClick={() => deleteUser(item.username, item.id)}
+                    className="row-span-2 w-max"
+                  >
+                    <Image
+                      width={23}
+                      height={23}
+                      src="/trash.svg"
+                      alt="trash-icon"
+                    />
+                  </button>
                 </div>
-                <button className="row-span-2 w-max">
-                  <Image
-                    width={23}
-                    height={23}
-                    src="/trash.svg"
-                    alt="trash-icon"
-                  />
-                </button>
-              </div>
-            </li>
-            <li>
-              <div className="flex justify-between font-semibold">
-                <div>
-                  <p>Maulana Malik Ibrahim</p>
-                  <p className="text-xs opacity-50">@mallexibra</p>
-                </div>
-                <button className="row-span-2 w-max">
-                  <Image
-                    width={23}
-                    height={23}
-                    src="/trash.svg"
-                    alt="trash-icon"
-                  />
-                </button>
-              </div>
-            </li>
-            <li>
-              <div className="flex justify-between font-semibold">
-                <div>
-                  <p>Maulana Malik Ibrahim</p>
-                  <p className="text-xs opacity-50">@mallexibra</p>
-                </div>
-                <button className="row-span-2 w-max">
-                  <Image
-                    width={23}
-                    height={23}
-                    src="/trash.svg"
-                    alt="trash-icon"
-                  />
-                </button>
-              </div>
-            </li>
+              </li>
+            ))}
           </ul>
-          <TambahTeam />
+          <TambahTeam method={getUsers} />
         </div>
       </Container>
     </div>

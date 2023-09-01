@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 const Navbar = ({ home, product, person, logout }) => {
   const router = useRouter();
   const logOut = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("employee");
     return router.push("/login");
   };
   return (

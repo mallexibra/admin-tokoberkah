@@ -4,8 +4,9 @@ import LabelForm from "@/components/LabelForm";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useAnimate } from "framer-motion";
+import axios from "axios";
 
-const TambahTeam = () => {
+const TambahTeam = ({ method }) => {
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useAnimate();
   const formRef = useRef(null);
@@ -14,6 +15,27 @@ const TambahTeam = () => {
     if (!formRef.current.contains(e.target)) {
       setModal(!modal);
     }
+  };
+
+  const addTeam = async (e) => {
+    const nama = e.target[0].value;
+    const username = e.target[1].value;
+    const password = e.target[2].value;
+    const konfirmasiPassword = e.target[3].value;
+    if (!password == konfirmasiPassword) {
+      alert("Password dan Konfirmasi Password harus sama!");
+      return;
+    }
+    await axios.post(
+      "/api/v1/users",
+      { nama, username, password },
+      {
+        headers: "application/json",
+      }
+    );
+    alert("Team telah ditambahkan!");
+    setModal(false);
+    method();
   };
 
   useEffect(() => {
@@ -48,6 +70,7 @@ const TambahTeam = () => {
           className="bg-second relative space-y-3 p-5 rounded-md"
           action=""
           method="post"
+          onSubmit={addTeam}
         >
           <h5 className="font-bold text-xl">Tambah Team</h5>
           <LabelForm

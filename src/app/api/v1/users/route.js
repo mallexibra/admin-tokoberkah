@@ -17,3 +17,13 @@ export const GET = async (req, params) => {
     console.log(error);
   }
 };
+
+export const POST = async (req) => {
+  try {
+    const body = await req.json();
+    await prisma.users.create({ data: { ...body, image: "", imageUrl: "" } });
+    return NextResponse.json({ message: "Add new team!" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
