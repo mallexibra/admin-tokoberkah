@@ -107,7 +107,7 @@ const Product = () => {
                   </td>
                   <td class="px-6 py-4 w-max flex items-center gap-2">
                     <LihatProduk product={item} />
-                    <EditProduk />
+                    <EditProduk method={getProduct} product={item} />
                     <Image
                       onClick={() => deleteProduct(item.id)}
                       className="cursor-pointer"

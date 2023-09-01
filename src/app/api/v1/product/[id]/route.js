@@ -26,20 +26,24 @@ export const GET = async (req, params) => {
 };
 
 export const PATCH = async (req, params) => {
-  const id = Number(params.params.id);
-  const data = await req.json();
+  try {
+    const id = Number(params.params.id);
+    const data = await req.json();
 
-  await prisma.product.update({
-    where: {
-      id,
-    },
-    data,
-  });
+    await prisma.product.update({
+      where: {
+        id,
+      },
+      data,
+    });
 
-  return NextResponse.json(
-    { message: `Update product where id ${id}` },
-    { status: 200 }
-  );
+    return NextResponse.json(
+      { message: `Update product where id ${id}` },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const DELETE = async (req, params) => {

@@ -4,16 +4,31 @@ import LabelForm from "@/components/LabelForm";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useAnimate } from "framer-motion";
+import axios from "axios";
 
-const EditProduk = () => {
+const EditProduk = ({ product, method }) => {
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useAnimate();
+  const [nama, setNama] = useState(product.nama);
+  const [stok, setStok] = useState(product.stok);
+  const [harga, setHarga] = useState(product.harga);
   const formRef = useRef(null);
 
   const handleModal = (e) => {
     if (!formRef.current.contains(e.target)) {
       setModal(!modal);
     }
+  };
+
+  const handleEdit = async () => {
+    const data = { nama, stok, harga };
+    console.log(data);
+    await axios.patch(`/api/v1/product/${product.id}`, data, {
+      headers: "application/json",
+    });
+    setModal(false);
+    method();
+    alert("Data produk telah diubah!");
   };
 
   useEffect(() => {
@@ -43,6 +58,7 @@ const EditProduk = () => {
       >
         <form
           ref={formRef}
+          onSubmit={handleEdit}
           className="bg-second text-left relative space-y-3 p-5 rounded-md"
           action=""
           method="post"
@@ -51,19 +67,22 @@ const EditProduk = () => {
           <LabelForm
             name={"Nama produk"}
             type={"text"}
-            value={"Mackbook air"}
+            change={(e) => setNama(e.target.value)}
+            value={nama}
             placeholder={"Nama produk anda..."}
           />
           <LabelForm
             name={"Stok produk"}
             type={"text"}
-            value={17}
+            change={(e) => setStok(e.target.value)}
+            value={stok}
             placeholder={"Stok produk anda..."}
           />
           <LabelForm
             name={"Harga produk"}
             type={"number"}
-            value={120000}
+            change={(e) => setHarga(e.target.value)}
+            value={harga}
             placeholder={"Harga produk anda..."}
           />
           <Button type={"submit"}>Edit Produk</Button>
