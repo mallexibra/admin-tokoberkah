@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export const GET = async () => {
   try {
     const data = await prisma.keuangan.findMany();
-    NextResponse.json(
+    return NextResponse.json(
       { message: "Get data money, Sucess!", data },
       { status: 200 }
     );
