@@ -1,0 +1,10 @@
+-- CreateTable
+CREATE TABLE `Keuangan` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `nama` VARCHAR(191) NOT NULL,
+    `tanggal` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `jumlah` INTEGER NOT NULL,
+    `jenis` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

@@ -33,3 +33,11 @@ model Users {
   image    String
   imageUrl String
 }
+
+model Keuangan {
+  id      Int      @id @default(autoincrement())
+  nama    String
+  tanggal DateTime @default(now())
+  jumlah  Int
+  jenis   String
+}
