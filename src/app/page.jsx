@@ -64,6 +64,7 @@ const Dashboard = () => {
     let dataPenjualan = 0;
     let dataOmset = 0;
     money.map((item) => {
+      console.log("Hello");
       if (item.jenis == "pemasukan") {
         dataPemasukan = item.jumlah;
         dataPenjualan += 1;
@@ -115,8 +116,8 @@ const Dashboard = () => {
           <div className="grid grid-cols-2 mt-2 gap-2 justify-between">
             <CardInfo title={"Penjualan Hari Ini"} subtitle={penjualan} />
             <CardInfo title={"Omset Hari Ini"} subtitle={`Rp. ${omset}`} />
-            <TambahPemasukan />
-            <TambahPengeluaran />
+            <TambahPemasukan method={getMoney} />
+            <TambahPengeluaran method={getMoney} />
           </div>
           <CardHistory
             data={money}
