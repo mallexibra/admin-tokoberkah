@@ -8,16 +8,22 @@ const CardHistory = ({ title, data, filter }) => {
     }
     return angka;
   };
+
   return (
     <div className="p-5 rounded-lg drop-shadow-lg bg-white my-3">
       <h4 className="font-bold text-lg">{title}</h4>
       <ol className="list-decimal font-medium ml-4">
         {data.map((item) => {
-          if (item.jenis == filter) {
-            let date = new Date(item.tanggal);
-            let tanggal = date.getDate();
-            let bulan = date.toLocaleString("default", { month: "long" });
-            let tahun = date.getFullYear();
+          let dateNow = new Date();
+          let dateData = new Date(item.tanggal);
+          if (
+            item.jenis == filter.toLowerCase() &&
+            dateNow.toISOString().slice(0, 10) ==
+              dateData.toISOString().slice(0, 10)
+          ) {
+            let tanggal = dateData.getDate();
+            let bulan = dateData.toLocaleString("default", { month: "long" });
+            let tahun = dateData.getFullYear();
 
             let tanggalfix = tanggal + " " + bulan + " " + tahun;
 
