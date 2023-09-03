@@ -1,4 +1,11 @@
-const LabelForm = ({ name, type, change, placeholder, value }) => {
+const LabelForm = ({
+  name,
+  type,
+  change,
+  placeholder,
+  disabled = false,
+  value,
+}) => {
   return (
     <label
       aria-label="LabelForm"
@@ -7,8 +14,9 @@ const LabelForm = ({ name, type, change, placeholder, value }) => {
     >
       <span className="font-medium">{name}</span>
       <input
-        className="w-full border border-black rounded-md p-2 text-xs outline-none"
+        className="w-full disabled:bg-black/5 border border-black rounded-md p-2 text-xs outline-none"
         type={type}
+        disabled={disabled}
         name={name}
         value={value}
         onChange={change}
