@@ -22,6 +22,7 @@ const Dashboard = () => {
 
   const getMoney = async () => {
     const data = (await axios.get("/api/v1/money")).data.data;
+    trafik(data);
     setMoney(data);
   };
 
@@ -43,38 +44,29 @@ const Dashboard = () => {
     return angka;
   };
 
-  const totalSaldo = async () => {
+  const trafik = async (data) => {
+    let dataPemasukan = 0;
+    let dataPengeluaran = 0;
+    let dataPenjualan = 0;
+    let dataOmset = 0;
     let pemasukan = 0;
     let pengeluaran = 0;
-    money.map((item) => {
+    data.map((item) => {
       if (item.jenis == "pemasukan") {
+        dataPemasukan = item.jumlah;
+        dataPenjualan += 1;
+        dataOmset += item.jumlah;
         pemasukan += item.jumlah;
       } else if (item.jenis == "pengeluaran") {
+        dataPengeluaran = item.jumlah;
         pengeluaran += item.jumlah;
       }
     });
 
     let total = formatRupiah(pemasukan - pengeluaran);
     setSaldo(total);
-  };
-
-  const trafik = () => {
-    let dataPemasukan = 0;
-    let dataPengeluaran = 0;
-    let dataPenjualan = 0;
-    let dataOmset = 0;
-    money.map((item) => {
-      console.log("Hello");
-      if (item.jenis == "pemasukan") {
-        dataPemasukan = item.jumlah;
-        dataPenjualan += 1;
-        dataOmset += item.jumlah;
-      } else if (item.jenis == "pengeluaran") {
-        dataPengeluaran = item.jumlah;
-      }
-    });
-    setPemasukan(dataPemasukan);
-    setPengeluaran(dataPengeluaran);
+    setPemasukan(formatRupiah(dataPemasukan));
+    setPengeluaran(formatRupiah(dataPengeluaran));
     setPenjualan(dataPenjualan);
     setOmset(formatRupiah(dataOmset));
   };
@@ -82,8 +74,6 @@ const Dashboard = () => {
   useEffect(() => {
     checkLogin();
     getMoney();
-    totalSaldo();
-    trafik();
   }, []);
   return (
     <div>
